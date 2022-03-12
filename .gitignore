@@ -1,7 +1,3 @@
-cart/node_modules
-
-home/node_modules
-
-pdp/node_modules
-
-.vscode
+node_modules
+dist
+build
