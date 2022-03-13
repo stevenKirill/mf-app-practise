@@ -1,0 +1,1 @@
+Module federation practise full stack app
