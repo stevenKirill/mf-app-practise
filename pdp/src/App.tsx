@@ -6,6 +6,7 @@ import Layout from "./components/Layout";
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import "./index.scss";
 import ErrorBoundary from "./utils/ErrorBoundary";
+import "remixicon/fonts/remixicon.css";
 
 const App = () => (
   <BrowserRouter>
