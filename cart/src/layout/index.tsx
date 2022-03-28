@@ -1,20 +1,21 @@
-import React, { useEffect, useState, FC } from "react";
-import { jwt } from "../api/consts";
+import React, { useEffect, FC } from "react";
+import { getCart } from "../api/routes/cart";
+import { useLoggedIn } from "../api/routes/login";
 import Login from "../components/Login";
+import { MiniCart } from "../components/MiniCart";
 
 const Layout: FC = () => {
-  const [jwtToken, setJwtToken] = useState<string>("");
-//   useEffect(() => {
-//     login({ username: "maria", password: "123" });
-//     jwt.subscribe((value) => setJwtToken(value ?? ""));
-//     return () => {
-//         jwt.subscribe((value) => setJwtToken(value ?? ""));
-//     }
-//   }, []);
+  const loggedIn: boolean = useLoggedIn();
+  useEffect(() => {
+    if (loggedIn) {
+      getCart();
+    }
+  }, [loggedIn]);
   return (
-    <div>
-        <Login />
-    </div>
+    <>
+      <Login />
+      <MiniCart />
+    </>
   );
 };
 

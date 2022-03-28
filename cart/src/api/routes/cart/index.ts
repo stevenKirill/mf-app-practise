@@ -1,4 +1,4 @@
-import { API_SERVER } from "home/src/services";
+import { API_SERVER } from "home/services";
 import { cart, jwt } from "../../consts";
 
 export const getCart = () => {
@@ -10,7 +10,7 @@ export const getCart = () => {
   })
     .then((res) => res.json())
     .then((res) => {
-      cart.next(res);
+      cart.next(res?.cartItems);
       return res;
     });
 };
