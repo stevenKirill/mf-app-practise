@@ -23,10 +23,10 @@ export const login = (userData: ReqLogin) => {
 };
 
 export const useLoggedIn = () => {
-  const [loggedIn, seLoggedIn] = useState(!!jwt.value);
+  const [loggedIn, setLoggedIn] = useState(!!jwt.value);
   useEffect(() => {
-    seLoggedIn(!!jwt.value);
-    jwt.subscribe((c) => seLoggedIn(!!jwt.value));
+    setLoggedIn(!!jwt.value);
+    jwt.subscribe((c) => setLoggedIn(!!jwt.value));
   }, []);
   return loggedIn;
 };

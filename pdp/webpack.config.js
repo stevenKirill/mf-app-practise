@@ -44,7 +44,9 @@ module.exports = {
       name: "pdp",
       filename: "remoteEntry.js",
       remotes: {
-        home: "home@http://localhost:3001/remoteEntry.js"
+        home: "home@http://localhost:3001/remoteEntry.js",
+        pdp: "pdp@http://localhost:3002/remoteEntry.js",
+        cart: "cart@http://localhost:3003/remoteEntry.js",
       },
       exposes: {},
       shared: {

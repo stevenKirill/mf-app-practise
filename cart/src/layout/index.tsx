@@ -1,20 +1,55 @@
-import React, { useEffect, FC } from "react";
-import { getCart } from "../api/routes/cart";
-import { useLoggedIn } from "../api/routes/login";
-import Login from "../components/Login";
-import { MiniCart } from "../components/MiniCart";
+import React, { useEffect, FC, useState } from "react";
+import { currency } from "home/services";
+import { cart, clearCart } from "../api/";
 
 const Layout: FC = () => {
-  const loggedIn: boolean = useLoggedIn();
+  const [items, setItems] = useState([]);
+
   useEffect(() => {
-    if (loggedIn) {
-      getCart();
-    }
-  }, [loggedIn]);
+    () => cart.subscribe((value) => setItems(value?.cartItems ?? []))
+  }, []);
+
   return (
     <>
-      <Login />
-      <MiniCart />
+      <div className="my-10 grid grid-cols-4 gap-5">
+        {items.map((item) => (
+          <React.Fragment key={item.id}>
+            <div>{item.quantity}</div>
+            <img src={item.image} alt={item.name} className="max-h-6" />
+            <div>{item.name}</div>
+            <div className="text-right">
+              {currency.format(item.quantity * item.price)}
+            </div>
+          </React.Fragment>
+        ))}
+        <div></div>
+        <div></div>
+        <div></div>
+        <div className="text-right" id="grand_total">
+          {currency.format(items.reduce((a, v) => a + v.quantity * v.price, 0))}
+        </div>
+      </div>
+      {items.length > 0 && (
+        <div className="flex mb-10">
+          <div className="flex-grow">
+            <button
+              id="clearcart"
+              className="bg-white border border-green-800 text-green-800 py-2 px-5 rounded-md text-sm"
+              onClick={clearCart}
+            >
+              Clear Cart
+            </button>
+          </div>
+          <div className="flex-end">
+            <button
+              className="bg-green-900 text-white py-2 px-5 rounded-md text-sm"
+              onClick={clearCart}
+            >
+              Checkout
+            </button>
+          </div>
+        </div>
+      )}
     </>
   );
 };

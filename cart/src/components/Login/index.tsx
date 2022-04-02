@@ -1,6 +1,6 @@
 import React, { useState, SyntheticEvent, FC } from "react";
-import { useLoggedIn, login } from "../api/routes/login";
-import { ReqLogin } from "../types";
+import { login, useLoggedIn } from "../../api";
+import { ReqLogin } from "../../types";
 
 const Login: FC = () => {
   const loggedIn: boolean = useLoggedIn();
@@ -32,7 +32,7 @@ const Login: FC = () => {
       {showLogin && (
         <div
           className="absolute p-5 border-4 border-blue-800 bg-white rounded-xl text-black"
-          style={{ width: 300 }}
+          style={{ width: 300, right: 100 }}
         >
           <input
             type="text"

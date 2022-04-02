@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { currency } from "home/services";
-import { cart } from "../api/consts";
-import { clearCart } from "../api/routes/cart";
-import { CartItem } from "../types";
+import { cart } from "../../api/consts";
+import { clearCart } from "../../api/routes/cart";
+import { CartItem } from "../../types";
 
 export const MiniCart = () => {
   const [items, setItems] = useState<CartItem[] | []>([]);
@@ -13,8 +13,8 @@ export const MiniCart = () => {
         setItems(c)
     });
   }, []);
-  
-  if (!items) return null;
+
+  if (!items) return null
 
   return (
     <React.Fragment>
@@ -32,6 +32,10 @@ export const MiniCart = () => {
               left: -250,
             }}
           >
+            <span style={{ cursor: 'pointer' }} onClick={() => setShow(false)}>
+              <i className="ri-close-fill"></i>
+            </span>
+            {items.length > 0 ?
             <div
               className="grid gap-3 text-sm"
               style={{
@@ -56,11 +60,15 @@ export const MiniCart = () => {
                   items.reduce((a, v) => a + v.quantity * v.price, 0)
                 )}
               </div>
-            </div>
+            </div> 
+            : 
+            <div>No items</div>
+            }
             <div className="flex">
               <div className="flex-grow">
                 <button
                   id="clearcart"
+                  disabled={items.length >= 0}
                   className="bg-white border border-green-800 text-green-800 py-2 px-5 rounded-md text-sm"
                   onClick={clearCart}
                 >
@@ -69,6 +77,7 @@ export const MiniCart = () => {
               </div>
               <div className="flex-end">
                 <button
+                  disabled={items.length >= 0}
                   className="bg-green-900 text-white py-2 px-5 rounded-md text-sm"
                   onClick={clearCart}
                 >
