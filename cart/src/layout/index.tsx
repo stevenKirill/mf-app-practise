@@ -1,17 +1,15 @@
 import React, { useEffect, FC, useState } from "react";
 import { currency } from "home/services";
-import { cart, clearCart } from "../api/";
+import { cart, clearCart, useLoggedIn } from "../api/";
 
 const Layout: FC = () => {
   const [items, setItems] = useState([]);
-
-  useEffect(() => {
-    () => cart.subscribe((value) => setItems(value?.cartItems ?? []))
-  }, []);
-
+  const loggedIn = useLoggedIn();
+  
   return (
     <>
       <div className="my-10 grid grid-cols-4 gap-5">
+        <div>hello l</div>
         {items.map((item) => (
           <React.Fragment key={item.id}>
             <div>{item.quantity}</div>

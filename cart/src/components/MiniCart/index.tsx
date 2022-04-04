@@ -68,7 +68,6 @@ export const MiniCart = () => {
               <div className="flex-grow">
                 <button
                   id="clearcart"
-                  disabled={items.length >= 0}
                   className="bg-white border border-green-800 text-green-800 py-2 px-5 rounded-md text-sm"
                   onClick={clearCart}
                 >
@@ -77,7 +76,6 @@ export const MiniCart = () => {
               </div>
               <div className="flex-end">
                 <button
-                  disabled={items.length >= 0}
                   className="bg-green-900 text-white py-2 px-5 rounded-md text-sm"
                   onClick={clearCart}
                 >
