@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom';
 import { ProductSpinner } from "./types";
 
 const Layout = () => {
-  const [product, setProduct] = useState<ProductSpinner>(null);
+  const [product, setProduct] = useState<ProductSpinner | null>(null);
   const { id } = useParams();
 
   useEffect(() => {

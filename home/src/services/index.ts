@@ -7,3 +7,5 @@ export {
     getProducts,
     currency
 }
+
+export type { Product } from "./types";

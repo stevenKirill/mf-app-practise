@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { currency, getProducts } from "../services";
+import { currency, getProducts, Product } from "../services";
 import { getCart, useLoggedIn, addToCart } from "cart/cartApi";
 
 export const Main = () => {
-  const [products, setProducts] = useState([]);
+  const [products, setProducts] = useState<Product[]>([]);
   const loggedIn: boolean = useLoggedIn();
+
   useEffect(() => {
     getProducts().then(setProducts);
   }, []);
