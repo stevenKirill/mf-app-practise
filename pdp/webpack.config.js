@@ -49,7 +49,7 @@ module.exports = {
         cart: "cart@http://localhost:3003/remoteEntry.js",
       },
       exposes: {
-        './Layout': './src/components/Layout.tsx',
+        './Pdp': './src/App.tsx',
       },
       shared: {
         ...deps,
