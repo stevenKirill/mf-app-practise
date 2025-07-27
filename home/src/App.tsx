@@ -2,16 +2,17 @@ import React, { Suspense } from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Footer from "./components/Footer";
+import ErrorBoundary from "./components/ErrorBoundary";
 import Header from "./components/Header";
 import { Main } from "./layouts/main";
-import "remixicon/fonts/remixicon.css";
 import PdpApp from "pdp/Pdp";
 
 import "./index.scss";
+import "remixicon/fonts/remixicon.css";
 
 
 const App = () => (
-  <>
+  <ErrorBoundary>
     <Header />
     <Router>
       <div className="mt-10 text-3xl mx-auto max-w-6xl">
@@ -31,7 +32,7 @@ const App = () => (
         <Footer />
       </div>
     </Router>
-  </>
+  </ErrorBoundary>
 );
 
 ReactDOM.render(<App />, document.getElementById("app"));

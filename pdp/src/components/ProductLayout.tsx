@@ -3,7 +3,7 @@ import { getProduct, currency } from "home/services";
 import { useParams } from "react-router-dom";
 import { ProductSpinner } from "./types";
 
-const Layout = () => {
+const ProductLayout = () => {
   const [product, setProduct] = useState<ProductSpinner | null>(null);
   const { id = 1 } = useParams();
 
@@ -36,4 +36,4 @@ const Layout = () => {
   );
 };
 
-export default Layout;
+export default ProductLayout;
