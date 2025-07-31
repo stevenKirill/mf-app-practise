@@ -19,7 +19,10 @@ export const login = (userData: ReqLogin) => {
       jwt.next(data.access_token);
       return data.access_token;
     })
-    .catch((err) => console.error(err));
+    .catch((err) => {
+      console.error("Login failed. Error details:", err);
+      return null;
+    });
 };
 
 export const useLoggedIn = () => {

@@ -7,6 +7,7 @@ import { CartItem } from "../../types";
 export const MiniCart = () => {
   const [items, setItems] = useState<CartItem[] | []>([]);
   const [show, setShow] = useState<boolean>(false);
+  const [checkout, setCheckout] = useState(false);
   useEffect(() => {
     setItems(cart.value?.cartItems);
     cart.subscribe((c) => {
@@ -14,7 +15,11 @@ export const MiniCart = () => {
     });
   }, []);
 
-  if (!items) return null
+  const handleCheckout = () => {
+    setCheckout(!checkout);
+  };
+
+  if (!items) return null;
 
   return (
     <React.Fragment>
@@ -64,6 +69,9 @@ export const MiniCart = () => {
             : 
             <div>No items</div>
             }
+            {checkout && (
+              <div>Checkout</div>
+            )}
             <div className="flex">
               <div className="flex-grow">
                 <button
@@ -77,7 +85,7 @@ export const MiniCart = () => {
               <div className="flex-end">
                 <button
                   className="bg-green-900 text-white py-2 px-5 rounded-md text-sm"
-                  onClick={clearCart}
+                  onClick={handleCheckout}
                 >
                   Checkout
                 </button>
